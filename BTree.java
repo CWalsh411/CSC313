@@ -1,3 +1,4 @@
+package assignment2;
 import java.util.*;
 public class BTree<E>{
    private static class BNode<E>{
@@ -44,24 +45,48 @@ public class BTree<E>{
       size++;
       return root;
    }
-   public void levelOrder(){
-        List<List<TNode<E>>> queue = new LinkedList<List<TNode<E>>>();
-        List<TNode<E>> first = new LinkedList<TNode<E>>();
-        fist.add (root);
+   public void levelOrder() {
+	   	Queue<BNode<E>> queue  = new LinkedList<BNode<E>>();
+	   
+	    queue.add(root);
+	     
+	    while(!queue.isEmpty()){
+	        
+	    	BNode<E> temp = queue.poll();
+	        
+	    	System.out.print(temp.data + " ");
+	        
+	    	if(temp.left != null)
+	    		queue.add(temp.left);
+	        
+	    	if(temp.right!= null)
+	        	queue.add(temp.right);
+	    }
+	    System.out.println();
+   }
+  
+   /*
+     public void levelOrder(){
+        List<List<BNode<E>>> queue = new LinkedList<List<BNode<E>>>();
+        List<BNode<E>> first = new LinkedList<BNode<E>>();
+        first.add (root);
         queue.add(first);
         levelPrint(queue);
         System.out.println();
    }
-   private void levelPrint(List<List<TNode<E>>> q){
-        if(q.isEmpty)
-          return;
-        List<TNode<E>> tempP = q.remove(0);
-        for(TNode<E> tn : temp){
-             System.out.print(tn.data);
-             if(tn.children != null)
-               q.add(tn.children);
-        }
-   }
+   private void levelPrint(List<List<BNode<E>>> q){
+       if(q.isEmpty())
+         return;
+       List<BNode<E>> tempP = q.remove(0);
+       for(BNode<E> tn : tempP){
+            System.out.print(tn.data);
+            if(tn.left != null)
+              q.add(tn.left);
+            if(tn.right != null)
+                q.add(tn.right);
+       }
+  }
+  */
    public void make(E[] values){
       BNode<E> rt = addRoot(values[0]);
       BNode<E> lt = addLeft(rt, values[1]);
